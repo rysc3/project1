@@ -1,15 +1,15 @@
 public class main {
   public static void main(String[] args) {
-    BigInteger test1 = new BigInteger("-2048");
-    BigInteger test2 = new BigInteger("2048");
-    BigInteger test3 = new BigInteger("-2415763190");
+    MyBigInteger test1 = new MyBigInteger("-2048");
+    MyBigInteger test2 = new MyBigInteger("2048");
+    MyBigInteger test3 = new MyBigInteger("-2415763190");
     // Tests from the word document
-    BigInteger test4 = new BigInteger("18364000098463281009282");
-    BigInteger test5 = new BigInteger("-9382361766839928276166829");
-    BigInteger test6 = new BigInteger("839947462729219484028272");
-    BigInteger test7 = new BigInteger("-839947462729219484028000");
-    BigInteger test8 = new BigInteger("-25634837829208474747382992822");
-    BigInteger test9 = new BigInteger("-6382927634646483929283733883");
+    MyBigInteger test4 = new MyBigInteger("18364000098463281009282");
+    MyBigInteger test5 = new MyBigInteger("-9382361766839928276166829");
+    MyBigInteger test6 = new MyBigInteger("839947462729219484028272");
+    MyBigInteger test7 = new MyBigInteger("-839947462729219484028000");
+    MyBigInteger test8 = new MyBigInteger("-25634837829208474747382992822");
+    MyBigInteger test9 = new MyBigInteger("-6382927634646483929283733883");
     System.out.println(test1);
     System.out.println(test2);
     System.out.println(test3);

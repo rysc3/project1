@@ -1,4 +1,4 @@
-public class BigInteger {
+public class MyBigInteger {
   IntegerNode head;
 
   /**
@@ -8,7 +8,7 @@ public class BigInteger {
    * 
    * @param number the string to be converted into a BigInteger
    */
-  public BigInteger(String number) {
+  public MyBigInteger(String number) {
     char[] chars = number.toCharArray();
     int len = chars.length;
     int sign = (chars[0] == '-') ? -1 : 1;
@@ -51,7 +51,7 @@ public class BigInteger {
    * 
    * @param bigInt the MyBigInteger object to be copied
    */
-  public BigInteger(BigInteger bigInt) {
+  public MyBigInteger(MyBigInteger bigInt) {
     IntegerNode currNode = new IntegerNode(bigInt.head.digits);
     this.head = currNode;
 
@@ -75,11 +75,11 @@ public class BigInteger {
       return true;
     }
 
-    if (!(obj instanceof BigInteger)) {
+    if (!(obj instanceof MyBigInteger)) {
       return false;
     }
 
-    BigInteger bigInt = (BigInteger) obj;
+    MyBigInteger bigInt = (MyBigInteger) obj;
     IntegerNode b1 = bigInt.head;
     IntegerNode b2 = this.head;
 
@@ -109,7 +109,7 @@ public class BigInteger {
     return str.toString();
   }
 
-  public static BigInteger add(BigInteger b1, BigInteger b2) {
+  public static MyBigInteger add(MyBigInteger b1, MyBigInteger b2) {
     return null;
   }
 }
