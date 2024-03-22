@@ -149,15 +149,15 @@ public class MyBigInteger {
     }else if (N1.nextPos == null) {
         //set sign to N2 sign
       N2 = N2.nextPos;
-      recursiveAdd(0, N2, NR, S1, S2, carry);
+      // recursiveAdd(0, N2, NR, S1, S2, carry);
     }else if (N2.nextPos == null) {
       //set sign to N1 sign
       N1 = N1.nextPos;
-        recursiveAdd(N1, 0, NR, S1, S2, carry);
+        // recursiveAdd(N1, 0, NR, S1, S2, carry);
     }
     N1 = N1.nextPos;
      N2 = N2.nextPos;
-    recursiveAdd(N1, N2, NR, S1, S2, carry);
+    // recursiveAdd(N1, N2, NR, S1, S2, carry);
   }
 }
 
