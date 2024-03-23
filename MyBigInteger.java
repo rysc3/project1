@@ -115,7 +115,7 @@ public class MyBigInteger {
 
   public static MyBigInteger add(MyBigInteger b1, MyBigInteger b2) {
     MyBigInteger result = new MyBigInteger(b1);
-    int sign = recursiveAdd(b1.head, b2.head, result.head, b1.head.digits, b2.head.digits, 0);
+    int sign = recursiveAdd(b1.head.nextPos, b2.head.nextPos, result.head.nextPos, b1.head.digits, b2.head.digits, 0);
     result.head.setSign(sign);
     return result;
   }
@@ -123,7 +123,7 @@ public class MyBigInteger {
 
     if (N1.nextPos != null && N2.nextPos != null) {
       if (carry == 1) NR.addNextNode(1);
-      return;
+      return ;
     }else if (N1.nextPos == null) {
       NR.nextPos = N2.nextPos;
     }else if (N2.nextPos == null) {
