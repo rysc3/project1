@@ -52,13 +52,17 @@ public class MyBigInteger {
    * @param bigInt the MyBigInteger object to be copied
    */
   public MyBigInteger(MyBigInteger bigInt) {
+    IntegerNode bigIntNode = bigInt.head;
     IntegerNode currNode = new IntegerNode(bigInt.head.digits);
     this.head = currNode;
 
-    while (bigInt.head.nextPos != null) {
+    this.head.digits = bigIntNode.digits;
+    bigIntNode = bigIntNode.nextPos;
 
+    while (bigIntNode != null) {
+      currNode.addNextNode(bigIntNode.digits);
+      bigIntNode = bigIntNode.nextPos;
     }
-
   }
 
   /* ====================== OVERRIDDEN METHODS =================== */
