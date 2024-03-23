@@ -110,29 +110,9 @@ public class MyBigInteger {
   }
 
   public static MyBigInteger add(MyBigInteger b1, MyBigInteger b2) {
-    int b1Sign = b1.head.digits;  // set b1 sign 
-    IntegerNode b1Node = b1.head.nextPos;
-
-    int b2Sign = b2.head.digits;  // set b2 sign 
-    IntegerNode b2Node = b2.head.nextPos;
-
-    // Create our resulting node 
-    IntegerNode result;
-
-    // Check which sign we should initially set
-    if(b1Sign > 0 && b2Sign > 0){   // both positive
-      result = new IntegerNode(b1Sign);
-    } else if (b1Sign < 0 && b2Sign < 0){   // Both negative
-      result = new IntegerNode(b1Sign);
-    } else {    // One posiitve, one Negative
-      // TODO Just choose a random value for now, since we will determine which number was larger and update the head later?
-      result = new IntegerNode(b1Sign);
-    }
-
-    // recurisve call
-
-
-    return null;
+    MyBigInteger result = new MyBigInteger(b1);
+    recursiveAdd(b1.head, b2.head, result.head, b1.head.digits, b2.head.digits, 0);
+    return result;
   }
   public static void recursiveAdd(IntegerNode N1, IntegerNode N2, IntegerNode NR, int S1, int S2, int carry) {
     if(N1.digits*S1 + N2.digits*S2 + carry < 10000){
