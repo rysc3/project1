@@ -118,46 +118,72 @@ public class MyBigInteger {
     int b1Sign = b1.head.digits;
     int b2Sign = b2.head.digits;
     MyBigInteger result = new MyBigInteger(b1);
-    System.out.println("Result: " );
-    while (result.head.nextPos != null) {
-      System.out.println(result.head.digits);
-      result.head = result.head.nextPos;
+    if(b1.head.digits == b2.head.digits) {
+      b1Sign = 1;
+      b2Sign = 1;
     }
-    // if(b1.head.digits == b2.head.digits) {
-    //   b1Sign = 1;
-    //   b2Sign = 1;
-    // }
-    // if (b1.head.digits == 0) b1Sign = 1;
-    // if (b2.head.digits == 0) b2Sign = 1;
+    if (b1.head.digits == 0) b1Sign = 1;
+    if (b2.head.digits == 0) b2Sign = 1;
 
     int sign = recursiveAdd(b1.head.nextPos, b2.head.nextPos, result.head.nextPos, b1Sign, b2Sign, 0);
-  
+    if(b1.head.digits == b2.head.digits && b1.head.digits == -1) {
+      sign = -1;
+    }
     result.head.setSign(sign);
     return result;
   }
   public static int recursiveAdd(IntegerNode N1, IntegerNode N2, IntegerNode NR, int S1, int S2, int carry) {
-    int sum = N1.digits*S1 + N2.digits*S2 + carry;
+    int sum = Math.abs(N1.digits*S1 + N2.digits*S2) + carry;
 
     if (N1.nextPos == null && N2.nextPos == null) {
 
       if (sum > 9999) {
-        NR.digits = 10000 - (sum);
+        NR.digits =  (sum)  - 10000;
         NR.addNextNode(1);
       }
-      else NR.digits = N1.digits*S1 + N2.digits*S2 + carry;
+      else NR.digits = sum + carry;
       return (sum < 0 ? -1 : 0);
 
     }else if (N1.nextPos == null) {
-      NR.nextPos = N2.nextPos;
+      if (sum > 9999) {
+        NR.digits =  (sum)  - 10000;
+        carry = 1;
+      }
+      else NR.digits = sum + carry;
+
+      while (N2.nextPos != null){
+        if (NR.nextPos == null) {
+          NR.addNextNode(Math.abs(N2.nextPos.digits) + carry);
+        }else{
+          NR.nextPos.digits = Math.abs(N2.nextPos.digits) + carry;
+        }
+        NR = NR.nextPos;
+        N2 = N2.nextPos;
+      }
       return S2 == 1 ? 0 : -1;
+
     }else if (N2.nextPos == null) {
-      NR.nextPos = N1.nextPos;
+      if (sum > 9999) {
+        NR.digits =  (sum)  - 10000;
+        carry = 1;
+      }
+      else NR.digits = sum + carry;
+
+      while (N1.nextPos != null){
+        if (NR.nextPos == null) {
+          NR.addNextNode(Math.abs(N1.nextPos.digits) + carry);
+        }else{
+          NR.nextPos.digits = Math.abs(N1.nextPos.digits) + carry;
+        }
+        NR = NR.nextPos;
+        N1 = N1.nextPos;
+      }
       return S1 == 1 ? 0 : -1;
     }
 
     //calculation for NR digits 
     if (sum > 9999) {
-      NR.digits = 10000 - (sum);
+      NR.digits = (sum) - 10000;
       carry = 1;
     }
     else NR.digits = sum;
