@@ -116,19 +116,36 @@ public class MyBigInteger {
     return result;
   }
   public static int recursiveAdd(IntegerNode N1, IntegerNode N2, IntegerNode NR, int S1, int S2, int carry) {
+    int sum = N1.digits*S1 + N2.digits*S2 + carry;
 
     if (N1.nextPos != null && N2.nextPos != null) {
-      if (carry == 1) NR.addNextNode(1);
-      return ;
+
+      if (sum > 9999) {
+        NR.digits = 10000 - (sum);
+        NR.addNextNode(1);
+      }
+      else NR.digits = N1.digits*S1 + N2.digits*S2 + carry;
+
+    return (sum < 0 ? -1 : 0);
+
     }else if (N1.nextPos == null) {
       NR.nextPos = N2.nextPos;
+      return S2 == 1 ? 0 : -1;
     }else if (N2.nextPos == null) {
       NR.nextPos = N1.nextPos;
+      return S1 == 1 ? 0 : -1;
     }
-    N1 = N1.nextPos;
-     N2 = N2.nextPos;
-    // recursiveAdd(N1, N2, NR, S1, S2, carry);
+
+    //calculation for NR digits 
+    if (sum > 9999) {
+      NR.digits = 10000 - (sum);
+      carry = 1;
+    }
+    else NR.digits = sum;
+    
+    return recursiveAdd(N1.nextPos, N2.nextPos, NR.nextPos, S1, S2, carry);
   }
+  
 }
 
 class IntegerNode {
