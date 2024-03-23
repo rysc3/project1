@@ -111,29 +111,19 @@ public class MyBigInteger {
 
   public static MyBigInteger add(MyBigInteger b1, MyBigInteger b2) {
     MyBigInteger result = new MyBigInteger(b1);
-    recursiveAdd(b1.head, b2.head, result.head, b1.head.digits, b2.head.digits, 0);
+    int sign = recursiveAdd(b1.head, b2.head, result.head, b1.head.digits, b2.head.digits, 0);
+    result.head.setSign(sign);
     return result;
   }
-  public static void recursiveAdd(IntegerNode N1, IntegerNode N2, IntegerNode NR, int S1, int S2, int carry) {
-    if(N1.digits*S1 + N2.digits*S2 + carry < 10000){
-        NR.addNextNode(N1.digits*S1 + N2.digits*S2 + carry);
-        carry = 0;
-    }
-    else {
-      NR.addNextNode((N1.digits*S1 + N2.digits*S2));
-      carry = 1;
-    }
+  public static int recursiveAdd(IntegerNode N1, IntegerNode N2, IntegerNode NR, int S1, int S2, int carry) {
+
     if (N1.nextPos != null && N2.nextPos != null) {
-      if (carry == 0) return;
-      else NR.addNextNode(1);
+      if (carry == 1) NR.addNextNode(1);
+      return;
     }else if (N1.nextPos == null) {
-        //set sign to N2 sign
-      N2 = N2.nextPos;
-      // recursiveAdd(0, N2, NR, S1, S2, carry);
+      NR.nextPos = N2.nextPos;
     }else if (N2.nextPos == null) {
-      //set sign to N1 sign
-      N1 = N1.nextPos;
-        // recursiveAdd(N1, 0, NR, S1, S2, carry);
+      NR.nextPos = N1.nextPos;
     }
     N1 = N1.nextPos;
      N2 = N2.nextPos;
