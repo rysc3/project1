@@ -109,55 +109,34 @@ public class MyBigInteger {
     return str.toString();
   }
 
-  public static MyBigInteger add(MyBigInteger b1, MyBigInteger b2) {
-    int b1Sign = b1.head.digits;  // set b1 sign 
-    IntegerNode b1Node = b1.head.nextPos;
-
-    int b2Sign = b2.head.digits;  // set b2 sign 
-    IntegerNode b2Node = b2.head.nextPos;
-
-    // Create our resulting node 
-    IntegerNode result;
-
-    // Check which sign we should initially set
-    if(b1Sign > 0 && b2Sign > 0){   // both positive
-      result = new IntegerNode(b1Sign);
-    } else if (b1Sign < 0 && b2Sign < 0){   // Both negative
-      result = new IntegerNode(b1Sign);
-    } else {    // One posiitve, one Negative
-      // TODO Just choose a random value for now, since we will determine which number was larger and update the head later?
-      result = new IntegerNode(b1Sign);
-    }
-
-    // recurisve call
-
-
-    return null;
-  }
-  public static void recursiveAdd(IntegerNode N1, IntegerNode N2, IntegerNode NR, int S1, int S2, int carry) {
-    if(N1.digits*S1 + N2.digits*S2 + carry < 10000){
-        NR.addNextNode(N1.digits*S1 + N2.digits*S2 + carry);
-        carry = 0;
-    }
-    else {
-      NR.addNextNode((N1.digits*S1 + N2.digits*S2));
+  public static MyBigInteger add(IntegerNode N1, IntegerNode N2, IntegerNode NR, int S1, int S2, int carry) {
+    if (N1.digits * S1 + N2.digits * S2 + carry < 10000) {
+      NR.addNextNode(N1.digits * S1 + N2.digits * S2 + carry);
+      carry = 0;
+    } else {
+      NR.addNextNode((N1.digits * S1 + N2.digits * S2));
       carry = 1;
     }
     if (N1.nextPos != null && N2.nextPos != null) {
-      if (carry == 0) return;
-      else NR.addNextNode(1);
-    }else if (N1.nextPos == null) {
-        //set sign to N2 sign
+      if (carry == 0)
+        return null;
+      else
+        NR.addNextNode(1);
+    } else if (N1.nextPos == null) {
+      // set sign to N2 sign
       N2 = N2.nextPos;
       // recursiveAdd(0, N2, NR, S1, S2, carry);
-    }else if (N2.nextPos == null) {
-      //set sign to N1 sign
+    } else if (N2.nextPos == null) {
+      // set sign to N1 sign
       N1 = N1.nextPos;
-        // recursiveAdd(N1, 0, NR, S1, S2, carry);
+      // recursiveAdd(N1, 0, NR, S1, S2, carry);
     }
     N1 = N1.nextPos;
-     N2 = N2.nextPos;
+    N2 = N2.nextPos;
     // recursiveAdd(N1, N2, NR, S1, S2, carry);
+
+    return null;
+
   }
 }
 
@@ -173,6 +152,7 @@ class IntegerNode {
   public void addNextNode(int digits) {
     this.nextPos = new IntegerNode(digits);
   }
+
   public void setSign(int sign) {
     this.digits = sign;
   }
