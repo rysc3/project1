@@ -10,15 +10,18 @@ public class main {
     MyBigInteger test7 = new MyBigInteger("-839947462729219484028000");
     MyBigInteger test8 = new MyBigInteger("-25634837829208474747382992822");
     MyBigInteger test9 = new MyBigInteger("-6382927634646483929283733883");
-    System.out.println(test1);
-    System.out.println(test2);
-    System.out.println(test3);
-    System.out.println(test4);
-    System.out.println(test5);
-    System.out.println(test6);
-    System.out.println(test7);
-    System.out.println(test8);
-    System.out.println(test9);
+    // System.out.println(test1);
+    // System.out.println(test2);
+    // System.out.println(test3);
+    // System.out.println(test4);
+    // System.out.println(test5);
+    // System.out.println(test6);
+    // System.out.println(test7);
+    // System.out.println(test8);
+    // System.out.println(test9);
+
+    MyBigInteger test10 = MyBigInteger.add(test8, test9);
+    System.out.println(test10);
   }
 
 }

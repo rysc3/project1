@@ -114,23 +114,32 @@ public class MyBigInteger {
   }
 
   public static MyBigInteger add(MyBigInteger b1, MyBigInteger b2) {
+    int b1Sign = b1.head.digits;
+    int b2Sign = b2.head.digits;
     MyBigInteger result = new MyBigInteger(b1);
-    int sign = recursiveAdd(b1.head.nextPos, b2.head.nextPos, result.head.nextPos, b1.head.digits, b2.head.digits, 0);
+    // if(b1.head.digits == b2.head.digits) {
+    //   b1Sign = 1;
+    //   b2Sign = 1;
+    // }
+    // if (b1.head.digits == 0) b1Sign = 1;
+    // if (b2.head.digits == 0) b2Sign = 1;
+
+    int sign = recursiveAdd(b1.head.nextPos, b2.head.nextPos, result.head.nextPos, b1Sign, b2Sign, 0);
+  
     result.head.setSign(sign);
     return result;
   }
   public static int recursiveAdd(IntegerNode N1, IntegerNode N2, IntegerNode NR, int S1, int S2, int carry) {
     int sum = N1.digits*S1 + N2.digits*S2 + carry;
 
-    if (N1.nextPos != null && N2.nextPos != null) {
+    if (N1.nextPos == null && N2.nextPos == null) {
 
       if (sum > 9999) {
         NR.digits = 10000 - (sum);
         NR.addNextNode(1);
       }
       else NR.digits = N1.digits*S1 + N2.digits*S2 + carry;
-
-    return (sum < 0 ? -1 : 0);
+      return (sum < 0 ? -1 : 0);
 
     }else if (N1.nextPos == null) {
       NR.nextPos = N2.nextPos;
@@ -146,7 +155,7 @@ public class MyBigInteger {
       carry = 1;
     }
     else NR.digits = sum;
-    
+
     return recursiveAdd(N1.nextPos, N2.nextPos, NR.nextPos, S1, S2, carry);
   }
   
