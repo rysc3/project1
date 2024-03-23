@@ -32,7 +32,7 @@ public class MyBigInteger {
         // add a new node
         currNode.addNextNode(currValue);
         currNode = currNode.nextPos;
-        System.out.println(currNode.digits);
+        //System.out.println(currNode.digits);
         // reset variables
         currValue = 0;
         multiplier = 1;
@@ -42,7 +42,7 @@ public class MyBigInteger {
 
     if (currValue != 0) {
       currNode.addNextNode(currValue);
-      System.out.println(currNode.digits);
+      //System.out.println(currNode.digits);
     }
   }
 
@@ -61,6 +61,7 @@ public class MyBigInteger {
 
     while (bigIntNode != null) {
       currNode.addNextNode(bigIntNode.digits);
+      currNode = currNode.nextPos;
       bigIntNode = bigIntNode.nextPos;
     }
   }
@@ -117,6 +118,11 @@ public class MyBigInteger {
     int b1Sign = b1.head.digits;
     int b2Sign = b2.head.digits;
     MyBigInteger result = new MyBigInteger(b1);
+    System.out.println("Result: " );
+    while (result.head.nextPos != null) {
+      System.out.println(result.head.digits);
+      result.head = result.head.nextPos;
+    }
     // if(b1.head.digits == b2.head.digits) {
     //   b1Sign = 1;
     //   b2Sign = 1;
