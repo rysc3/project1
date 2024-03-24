@@ -130,6 +130,18 @@ public class MyBigInteger {
       sign = -1;
     }
     result.head.setSign(sign);
+
+    
+    IntegerNode currNode = result.head.nextPos;
+    IntegerNode validNode = currNode;
+    while(currNode.nextPos != null){
+      if (currNode.digits != 0) {
+        validNode = currNode;
+      }
+      currNode = currNode.nextPos;
+    }
+    validNode.nextPos = null;
+    
     return result;
   }
   public static int recursiveAdd(IntegerNode N1, IntegerNode N2, IntegerNode NR, int S1, int S2, int carry) {
