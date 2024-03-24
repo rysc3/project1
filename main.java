@@ -48,19 +48,19 @@ public class main {
 
   public static boolean passingTest2() {
     System.out.println("====================== TEST 2 ========================");
-    MyBigInteger num1 = new MyBigInteger("2048");
-    MyBigInteger num2 = new MyBigInteger("2048");
+    MyBigInteger num1 = new MyBigInteger("839947462729219484028272");
+    MyBigInteger num2 = new MyBigInteger("-839947462729219484028000");
     MyBigInteger sum = MyBigInteger.add(num1, num2);
-    MyBigInteger expected = new MyBigInteger("4096");
+    MyBigInteger expected = new MyBigInteger("272");
     System.out.println("Actual: "+sum);
-    System.out.println("Expected: 4096");
+    System.out.println("Expected: 272");
     System.out.println("Formatted");
     System.out.println(num1.formattedString());
     System.out.println(num2.formattedString());
     System.out.println("---------------------------------------------");
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
-    return sum.toString().equals("4096");
+    return sum.toString().equals("272");
   }
 
   public static boolean passingTest3() {

@@ -34,8 +34,8 @@ public class MyBigInteger {
         // add a new node
         currNode.addNextNode(currValue);
         this.size++;
-        this.tail = currNode;
         currNode = currNode.nextPos;
+        this.tail = currNode;
         //System.out.println(currNode.digits);
         // reset variables
         currValue = 0;
@@ -61,6 +61,7 @@ public class MyBigInteger {
     IntegerNode bigIntNode = bigInt.head;
     IntegerNode currNode = new IntegerNode(bigInt.head.digits);
     this.head = currNode;
+    this.size = bigInt.size;
 
     this.head.digits = bigIntNode.digits;
     bigIntNode = bigIntNode.nextPos;
@@ -68,6 +69,7 @@ public class MyBigInteger {
     while (bigIntNode != null) {
       currNode.addNextNode(bigIntNode.digits);
       currNode = currNode.nextPos;
+      this.tail = currNode;
       bigIntNode = bigIntNode.nextPos;
     }
   }
@@ -202,7 +204,10 @@ public class MyBigInteger {
         carry = 0;
       }
     }
-    else sum = d1+d2+carry;
+    else {
+      sum = Math.abs(S1*d1+S2*d2)+carry;
+      carry = 0;
+    }
 
     // add sum to N1
     if (sum > 9999) {
