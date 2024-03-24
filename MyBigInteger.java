@@ -145,6 +145,7 @@ public class MyBigInteger {
     int finalSign = b1Sign; // assume b1 is the final sign
 
     // if signs are different check what final sign will be
+    // this won't work in the case of the last digits being the same value
     if(b1Sign != b2Sign) {
       boolean b2IsBigger = b2.size > result.size;
       boolean sameSize = b1.size == b2.size;
@@ -191,14 +192,14 @@ public class MyBigInteger {
     int sum = 0;
 
     if(tensComp) {
-      if(d2 > d1) {
-        sum = Math.abs(S1*d1 + S2*d2) + carry;
-        carry = 0;
-      }
-      else sum = d1+(10_000-d2) + carry;
-      if(sum > 9999) {
+      sum = d1+(10_000-d2);
+      if(sum > 9999){
+        sum = (20_000 - sum) + carry;
         carry = -1;
-        sum = 20_000 - sum;
+      }
+      else {
+        sum = (10_000 - sum) + carry;
+        carry = 0;
       }
     }
     else sum = d1+d2+carry;
