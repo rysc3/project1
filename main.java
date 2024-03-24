@@ -20,7 +20,7 @@ public class main {
      //System.out.println(test8);
     //System.out.println(test9);
 
-    MyBigInteger test10 = MyBigInteger.add(test6, test7);
+    MyBigInteger test10 = MyBigInteger.add(test8, test9);
     System.out.println(test10);
   }
 
