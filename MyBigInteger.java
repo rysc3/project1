@@ -100,18 +100,21 @@ public class MyBigInteger {
 
   @Override
   public String toString() {
-    StringBuilder str = new StringBuilder();
+
+    String sign = "";
+    String str = "";
     IntegerNode currNode = this.head;
 
-    while (currNode != null) {
-      if (currNode.nextPos == null) {
-        str.append(String.format("[ %d ]", currNode.digits));
-      } else {
-        str.append(String.format("[ %d ]->", currNode.digits));
-      }
+    if (currNode.digits == -1) {
+      sign = "-";
       currNode = currNode.nextPos;
     }
-    return str.toString();
+
+    while (currNode != null) {
+      str = currNode.digits + str;
+      currNode = currNode.nextPos;
+    }
+    return sign+ str;
   }
 
   public static MyBigInteger add(MyBigInteger b1, MyBigInteger b2) {
