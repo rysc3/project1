@@ -20,8 +20,39 @@ public class main {
      //System.out.println(test8);
     //System.out.println(test9);
 
-    MyBigInteger test10 = MyBigInteger.add(test8, test9);
-    System.out.println(test10);
+    // 1 & 2
+    System.out.println("--- Given Tests ---");
+    MyBigInteger num1 = new MyBigInteger("18364000098463281009282");
+    MyBigInteger num2 = new MyBigInteger("-9382361766839928276166829");
+    MyBigInteger test10 = MyBigInteger.add(num1, num2);
+    System.out.print("Test 1:");
+    if (test10.equals("-9363997766741464995157547")){
+      System.out.print(" PASS" + '\n');
+    }else{
+      System.out.print(" FAIL" + '\n');
+    }
+    // 3 & 4
+    MyBigInteger num3 = new MyBigInteger("839947462729219484028272");
+    MyBigInteger num4 = new MyBigInteger("-839947462729219484028000");
+    MyBigInteger test11 = MyBigInteger.add(num3, num4);
+    System.out.print("Test 2:");
+    if (test10.equals("272")){
+      System.out.print(" PASS" + '\n');
+    }else{
+      System.out.print(" FAIL" + '\n');
+    }
+
+    // 5 & 6
+    MyBigInteger num5 = new MyBigInteger("-25634837829208474747382992822");
+    MyBigInteger num6 = new MyBigInteger("-6382927634646483929283733883");
+    MyBigInteger test12 = MyBigInteger.add(num5, num6);
+    System.out.print("Test 2:");
+    if (test10.equals("-32017765463854958676666726705")){
+      System.out.print(" PASS" + '\n');
+    }else{
+      System.out.print(" FAIL" + '\n');
+    }
+    System.out.println("-------------------");
   }
 
 }
