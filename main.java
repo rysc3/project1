@@ -1,7 +1,7 @@
 public class main {
   public static void main(String[] args) {
-    // MyBigInteger test1 = new MyBigInteger("-2048");
-    // MyBigInteger test2 = new MyBigInteger("2048");
+    MyBigInteger test1 = new MyBigInteger("2048");
+    MyBigInteger test2 = new MyBigInteger("2048");
     // MyBigInteger test3 = new MyBigInteger("-2415763190");
     // // Tests from the word document
     // MyBigInteger test4 = new MyBigInteger("18364000098463281009282");
@@ -20,7 +20,7 @@ public class main {
      //System.out.println(test8);
     //System.out.println(test9);
 
-    MyBigInteger test10 = MyBigInteger.add(test6, test7);
+    MyBigInteger test10 = MyBigInteger.add(test1, test2);
     System.out.println(test10.toString());
     System.out.println(passingTest1());
   }
@@ -29,8 +29,10 @@ public class main {
     MyBigInteger num1 = new MyBigInteger("18364000098463281009282");
     MyBigInteger num2 = new MyBigInteger("-9382361766839928276166829");
     MyBigInteger sum = MyBigInteger.add(num1, num2);
-    System.out.println(sum.toString());
-    System.out.println("-9363997766741464995157547");
+    MyBigInteger expected = new MyBigInteger("-9363997766741464995157547");
+    System.out.println("actual:   "+ sum.formattedString());
+    System.out.println("expected: "+ expected.formattedString());
+    // System.out.println("-9363997766741464995157547");
     return sum.toString().equals("-9363997766741464995157547");
 
   }

@@ -98,6 +98,19 @@ public class MyBigInteger {
     return b1 == null && b2 == null;
   }
 
+  public String formattedString(){
+    StringBuilder str = new StringBuilder();
+    IntegerNode currNode = this.head;
+    while (currNode != null) {
+      if (currNode.nextPos == null) {
+        str.append(String.format("[ %d ]", currNode.digits));
+      } else {
+        str.append(String.format("[ %d ]->", currNode.digits));
+      }
+      currNode = currNode.nextPos;
+    }
+    return str.toString();
+  }
   @Override
   public String toString() {
 
@@ -107,8 +120,9 @@ public class MyBigInteger {
 
     if (currNode.digits == -1) {
       sign = "-";
-      currNode = currNode.nextPos;
+      
     }
+    currNode = currNode.nextPos;
 
     while (currNode != null) {
       str = currNode.digits + str;
