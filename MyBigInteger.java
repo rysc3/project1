@@ -147,7 +147,6 @@ public class MyBigInteger {
     int finalSign = b1Sign; // assume b1 is the final sign
 
     // if signs are different check what final sign will be
-    // this won't work in the case of the last digits being the same value?
     if(b1Sign != b2Sign) {
       boolean b2IsBigger = b2.size > result.size;
       boolean sameSize = b1.size == b2.size;
@@ -194,8 +193,10 @@ public class MyBigInteger {
     int sum = 0;
 
     if(tensComp) {
+      // compute tens comp of d2
       sum = d1+(10_000-d2);
       if(sum > 9999){
+        // 20_000 removes carry and computes tens comp again
         sum = (20_000 - sum) + carry;
         carry = -1;
       }
@@ -252,7 +253,8 @@ public class MyBigInteger {
     // B1 is longer than B2 and we still have a carry
     else if (N2.nextPos == null && carry == 1) {
       N1 = N1.nextPos;
-
+      // iterate over the rest of B1 while carry is 1
+      // necessary in case we have a "cascade" of carrys
       while (N1 != null && carry == 1){
         d1 = N1.digits;
         sum = d1 + carry;
