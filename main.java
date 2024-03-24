@@ -25,6 +25,8 @@ public class main {
     System.out.println(passingTest1());
     System.out.println(passingTest2());
     System.out.println(passingTest3());
+    System.out.println(passingTest4());
+    System.out.println(passingTest5());
   }
 
   public static boolean passingTest1(){
@@ -78,5 +80,39 @@ public class main {
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
     return sum.toString().equals("-32017765463854958676666726705");
+  }
+
+  public static boolean passingTest4() {
+    System.out.println("====================== TEST 4 ========================");
+    MyBigInteger num1 = new MyBigInteger("-839947462729219484028272");
+    MyBigInteger num2 = new MyBigInteger("839947462729219484028000");
+    MyBigInteger sum = MyBigInteger.add(num1, num2);
+    MyBigInteger expected = new MyBigInteger("-272");
+    System.out.println("Actual: "+sum);
+    System.out.println("Expected: -272");
+    System.out.println("Formatted");
+    System.out.println(num1.formattedString());
+    System.out.println(num2.formattedString());
+    System.out.println("---------------------------------------------");
+    System.out.println(sum.formattedString());
+    System.out.println(expected.formattedString());
+    return sum.toString().equals("-272");
+  }
+
+  public static boolean passingTest5() {
+    System.out.println("====================== TEST 5 ========================");
+    MyBigInteger num1 = new MyBigInteger("-839947462729219484028000");
+    MyBigInteger num2 = new MyBigInteger("839947462729219484028272");
+    MyBigInteger sum = MyBigInteger.add(num1, num2);
+    MyBigInteger expected = new MyBigInteger("272");
+    System.out.println("Actual: "+sum);
+    System.out.println("Expected: 272");
+    System.out.println("Formatted");
+    System.out.println(num1.formattedString());
+    System.out.println(num2.formattedString());
+    System.out.println("---------------------------------------------");
+    System.out.println(sum.formattedString());
+    System.out.println(expected.formattedString());
+    return sum.toString().equals("272");
   }
 }
