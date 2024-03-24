@@ -39,6 +39,7 @@ public class main {
     System.out.println("Formatted");
     System.out.println(num1.formattedString());
     System.out.println(num2.formattedString());
+    System.out.println("---------------------------------------------");
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
     return sum.toString().equals("-9363997766741464995157547");
@@ -54,6 +55,9 @@ public class main {
     System.out.println("Actual: "+sum);
     System.out.println("Expected: 4096");
     System.out.println("Formatted");
+    System.out.println(num1.formattedString());
+    System.out.println(num2.formattedString());
+    System.out.println("---------------------------------------------");
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
     return sum.toString().equals("4096");
@@ -68,6 +72,9 @@ public class main {
     System.out.println("Actual: "+sum);
     System.out.println("Expected: -32017765463854958676666726705");
     System.out.println("Formatted");
+    System.out.println(num1.formattedString());
+    System.out.println(num2.formattedString());
+    System.out.println("---------------------------------------------");
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
     return sum.toString().equals("-32017765463854958676666726705");

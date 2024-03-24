@@ -145,7 +145,7 @@ public class MyBigInteger {
     int finalSign = b1Sign; // assume b1 is the final sign
 
     // if signs are different check what final sign will be
-    // this won't work in the case of the last digits being the same value
+    // this won't work in the case of the last digits being the same value?
     if(b1Sign != b2Sign) {
       boolean b2IsBigger = b2.size > result.size;
       boolean sameSize = b1.size == b2.size;
@@ -256,7 +256,7 @@ public class MyBigInteger {
           carry = 1;
         }
         else carry = 0;
-        N1.addNextNode(sum);
+        N1.digits = sum;
         N1 = N1.nextPos;
       }
       // return the sign of S1 because its larger
