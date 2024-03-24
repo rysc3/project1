@@ -1,5 +1,7 @@
 public class MyBigInteger {
   IntegerNode head;
+  IntegerNode tail;
+  int size;
 
   /**
    * Builds a new MyBigInteger from scratch using the string "number".
@@ -12,25 +14,27 @@ public class MyBigInteger {
     char[] chars = number.toCharArray();
     int len = chars.length;
     int sign = (chars[0] == '-') ? -1 : 1;
+    int end = (sign == 1) ? 0 : 1;
     int currValue = 0;
     int multiplier = 1;
     int numOfDigitsCounted = 0;
+    this.size = 0; // don't include head node
 
     // create head node
     this.head = new IntegerNode(sign);
     IntegerNode currNode = this.head;
 
     // iterate over A[1:len] because A[0] is the sign
-    for (int i = len - 1; i >= 0; i--) {
-      if (chars[i] != '-') {
-        currValue += multiplier * Integer.parseInt(chars[i] + "");
-        multiplier *= 10;
-        numOfDigitsCounted++;
-      }
+    for (int i = len - 1; i >= end; i--) {
+      currValue += multiplier * Integer.parseInt(chars[i] + "");
+      multiplier *= 10;
+      numOfDigitsCounted++;
 
       if (numOfDigitsCounted == 4) { // added four numbers
         // add a new node
         currNode.addNextNode(currValue);
+        this.size++;
+        this.tail = currNode;
         currNode = currNode.nextPos;
         //System.out.println(currNode.digits);
         // reset variables
@@ -42,6 +46,8 @@ public class MyBigInteger {
 
     if (currValue != 0) {
       currNode.addNextNode(currValue);
+      this.size++;
+      this.tail = currNode;
       //System.out.println(currNode.digits);
     }
   }
@@ -136,7 +142,20 @@ public class MyBigInteger {
     int b2Sign = b2.head.digits;
     MyBigInteger result = new MyBigInteger(b1);
 
-    int finalSign = recursiveAdd(result.head.nextPos, b2.head.nextPos, b1Sign, b2Sign, 0);
+    int finalSign = b1Sign; // assume b1 is the final sign
+
+    // if signs are different check what final sign will be
+    if(b1Sign != b2Sign) {
+      boolean b2IsBigger = b2.size > result.size;
+      boolean sameSize = b1.size == b2.size;
+      boolean b2TailIsGreater = b2.tail.digits > b1.tail.digits;
+      // b2 is larger than b1 => change sign
+      if(b2IsBigger) finalSign = b2Sign;
+      // both lists are the same size
+      else if(sameSize && b2TailIsGreater) finalSign =  b2Sign;
+    }
+
+    recursiveAdd(result.head.nextPos, b2.head.nextPos, b1Sign, b2Sign, 0, finalSign!=b1Sign);
     
     if(b1.head.digits == b2.head.digits && b1.head.digits == -1) {
       finalSign = -1;
@@ -166,20 +185,30 @@ public class MyBigInteger {
    * @param  carry the carry value
    * @return       the sign of the final result
    */
-  public static int recursiveAdd(IntegerNode N1, IntegerNode N2, int S1, int S2, int carry) {
+  public static void recursiveAdd(IntegerNode N1, IntegerNode N2, int S1, int S2, int carry, boolean tensComp) {
     int d1 = N1.digits;
     int d2 = N2.digits;
-    int sum = Math.abs(d1*S1 + d2*S2) + carry;
-    int finalSign = S1;
+    int sum = 0;
 
-    if(S1 > S2) {
-      sum = ((9999-d1)+1) + d2 + carry;
+    if(tensComp) {
+      if(d2 > d1) {
+        sum = Math.abs(S1*d1 + S2*d2) + carry;
+        carry = 0;
+      }
+      else sum = d1+(10_000-d2) + carry;
+      if(sum > 9999) {
+        carry = -1;
+        sum = 20_000 - sum;
+      }
     }
+    else sum = d1+d2+carry;
 
-    // change final sign value if d2 overpowers d1
-    if(S1 != S2 && d2 > d1) {
-      finalSign = S2;
+    // add sum to N1
+    if (sum > 9999) {
+      N1.digits = sum - 10_000;
+      carry = 1;
     }
+    else N1.digits = sum;
 
     // base case: both nodes are null
     if (N1.nextPos == null && N2.nextPos == null) {
@@ -190,22 +219,11 @@ public class MyBigInteger {
       }
       else N1.digits = sum;
       // return final sign value
-      return finalSign;
+      return;
     }
     // B2 is longer than B1
-    else if (N1.nextPos == null) {
-      // add sum to N1
-      if (sum > 9999) {
-        N1.digits = sum - 10_000;
-        carry = 1;
-      }
-      else {
-        N1.digits = sum;
-        carry = 0;
-      }
-      
+    else if (N1.nextPos == null) {  
       N2 = N2.nextPos;
-
       // iterate over the rest of B2
       while (N2 != null){
         // handle carrying
@@ -222,20 +240,11 @@ public class MyBigInteger {
         N2 = N2.nextPos;
       }
       // return the sign of S2 because its larger
-      return S2 == 1 ? 0 : -1;
+      return;
     }
     
     // B1 is longer than B2 and we still have a carry
     else if (N2.nextPos == null && carry == 1) {
-      if (sum > 9999) {
-        N1.digits = sum - 10_000;
-        carry = 1;
-      }
-      else {
-        N1.digits = sum;
-        carry = 0;
-      }
-
       N1 = N1.nextPos;
 
       while (N1 != null && carry == 1){
@@ -249,20 +258,12 @@ public class MyBigInteger {
         N1.addNextNode(sum);
         N1 = N1.nextPos;
       }
-      return S1 == 1 ? 0 : -1;
+      // return the sign of S1 because its larger
+      return;
     }
 
-    //calculation for NR digits 
-    if (sum > 9999) {
-      N1.digits = sum - 10_000;
-      carry = 1;
-    }
-    else {
-      N1.digits = sum;
-      carry = 0;
-    }
-
-    return recursiveAdd(N1.nextPos, N2.nextPos, S1, S2, carry);
+    // recursive case
+    recursiveAdd(N1.nextPos, N2.nextPos, S1, S2, carry, tensComp);
   }
 }
 

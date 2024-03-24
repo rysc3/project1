@@ -23,28 +23,53 @@ public class main {
     //MyBigInteger test10 = MyBigInteger.add(test6, test7);
     //System.out.println(test10);
     System.out.println(passingTest1());
-    //System.out.println(passingTest2());
-  }
-
-  public static boolean passingTest2() {
-    MyBigInteger num1 = new MyBigInteger("2048");
-    MyBigInteger num2 = new MyBigInteger("2048");
-    MyBigInteger sum = MyBigInteger.add(num1, num2);
-    System.out.println("Actual: "+sum);
-    System.out.println("Expected: 4096");
-    return sum.toString().equals("4096");
+    System.out.println(passingTest2());
+    System.out.println(passingTest3());
   }
 
   public static boolean passingTest1(){
+    System.out.println("====================== TEST 1 ========================");
     MyBigInteger num1 = new MyBigInteger("18364000098463281009282");
     MyBigInteger num2 = new MyBigInteger("-9382361766839928276166829");
     MyBigInteger sum = MyBigInteger.add(num1, num2);
-    System.out.println(sum);
-    System.out.println(sum.formattedString());
-    System.out.println("-9363997766741464995157547");
+    System.out.println("Actual: "+sum);
+    //System.out.println(sum.formattedString());
+    System.out.println("Expected: -9363997766741464995157547");
     MyBigInteger expected = new MyBigInteger("-9363997766741464995157547");
+    System.out.println("Formatted");
+    System.out.println(num1.formattedString());
+    System.out.println(num2.formattedString());
+    System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
     return sum.toString().equals("-9363997766741464995157547");
 
+  }
+
+  public static boolean passingTest2() {
+    System.out.println("====================== TEST 2 ========================");
+    MyBigInteger num1 = new MyBigInteger("2048");
+    MyBigInteger num2 = new MyBigInteger("2048");
+    MyBigInteger sum = MyBigInteger.add(num1, num2);
+    MyBigInteger expected = new MyBigInteger("4096");
+    System.out.println("Actual: "+sum);
+    System.out.println("Expected: 4096");
+    System.out.println("Formatted");
+    System.out.println(sum.formattedString());
+    System.out.println(expected.formattedString());
+    return sum.toString().equals("4096");
+  }
+
+  public static boolean passingTest3() {
+    System.out.println("====================== TEST 3 ========================");
+    MyBigInteger num1 = new MyBigInteger("-25634837829208474747382992822");
+    MyBigInteger num2 = new MyBigInteger("-6382927634646483929283733883");
+    MyBigInteger expected = new MyBigInteger("-32017765463854958676666726705");
+    MyBigInteger sum = MyBigInteger.add(num1, num2);
+    System.out.println("Actual: "+sum);
+    System.out.println("Expected: -32017765463854958676666726705");
+    System.out.println("Formatted");
+    System.out.println(sum.formattedString());
+    System.out.println(expected.formattedString());
+    return sum.toString().equals("-32017765463854958676666726705");
   }
 }
