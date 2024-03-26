@@ -52,8 +52,8 @@ public class main {
     System.out.println("---------------------------------------------");
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
+    System.out.println(sum.toString().equals("-9363997766741464995157547"));
     return sum.toString().equals("-9363997766741464995157547");
-
   }
 
   public static boolean passingTest2() {
@@ -70,6 +70,7 @@ public class main {
     System.out.println("---------------------------------------------");
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
+    System.out.println(sum.toString().equals("272"));
     return sum.toString().equals("272");
   }
 
@@ -87,6 +88,7 @@ public class main {
     System.out.println("---------------------------------------------");
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
+    System.out.println(sum.toString().equals("-32017765463854958676666726705"));
     return sum.toString().equals("-32017765463854958676666726705");
   }
 
@@ -104,6 +106,7 @@ public class main {
     System.out.println("---------------------------------------------");
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
+    System.out.println(sum.toString().equals("-272"));
     return sum.toString().equals("-272");
   }
 
@@ -121,6 +124,7 @@ public class main {
     System.out.println("---------------------------------------------");
     System.out.println(sum.formattedString());
     System.out.println(expected.formattedString());
+    System.out.println(sum.toString().equals("272"));
     return sum.toString().equals("272");
   }
 }
