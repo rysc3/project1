@@ -160,9 +160,14 @@ public class MyBigInteger {
       else if(sameSize && tailsAreEqual) {
         IntegerNode N1 = result.head.next;
         IntegerNode N2 = b2.head.next;
-        while(N1.next != null && N2.next != null) {
+        while(N1.next != null && N2.next != null) { 
+          // does not work, add an extra condition to flip it back
+          // make sure it doesn't do anything when N2.digits == N1.digits
           if(N2.digits > N1.digits) {
             finalSign = b2Sign;
+          }
+          else if(N1.digits > N2.digits) {
+            finalSign = b1Sign;
           }
           // if N1.digits > N2.digits, then leave it
           N1 = N1.next;
