@@ -1,13 +1,15 @@
+import java.util.ArrayList;
+
 public class main {
   public static void main(String[] args) {
-    MyBigInteger test1 = new MyBigInteger("2048");
-    MyBigInteger test2 = new MyBigInteger("2048");
+    // MyBigInteger test1 = new MyBigInteger("2048");
+    // MyBigInteger test2 = new MyBigInteger("2048");
     // MyBigInteger test3 = new MyBigInteger("-2415763190");
     // // Tests from the word document
     // MyBigInteger test4 = new MyBigInteger("18364000098463281009282");
     // MyBigInteger test5 = new MyBigInteger("-9382361766839928276166829");
-    MyBigInteger test6 = new MyBigInteger("839947462729219484028272");
-    MyBigInteger test7 = new MyBigInteger("-839947462729219484028000");
+    // MyBigInteger test6 = new MyBigInteger("839947462729219484028272");
+    // MyBigInteger test7 = new MyBigInteger("-839947462729219484028000");
     // MyBigInteger test8 = new MyBigInteger("-25634837829208474747382992822");
     // MyBigInteger test9 = new MyBigInteger("-6382927634646483929283733883");
     // System.out.println(test1);
@@ -22,11 +24,17 @@ public class main {
 
     //MyBigInteger test10 = MyBigInteger.add(test6, test7);
     //System.out.println(test10);
-    System.out.println(passingTest1());
-    System.out.println(passingTest2());
-    System.out.println(passingTest3());
-    System.out.println(passingTest4());
-    System.out.println(passingTest5());
+    int successfulTests = 0;
+    ArrayList<Boolean> tests = new ArrayList<Boolean>();
+    tests.add(passingTest1());
+    tests.add(passingTest2());
+    tests.add(passingTest3());
+    tests.add(passingTest4());
+    tests.add(passingTest5());
+    for(boolean test : tests) {
+      if(test == true) successfulTests++;
+    }
+    System.out.printf("Successful cases: %d/%d",successfulTests, tests.size());
   }
 
   public static boolean passingTest1(){

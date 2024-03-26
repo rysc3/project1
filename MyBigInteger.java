@@ -159,13 +159,12 @@ public class MyBigInteger {
 
     recursiveAdd(result.head.nextPos, b2.head.nextPos, b1Sign, b2Sign, 0, finalSign!=b1Sign);
     
-    if(b1.head.digits == b2.head.digits && b1.head.digits == -1) {
-      finalSign = -1;
-    }
-    result.head.setSign(finalSign);
+    result.head.digits = finalSign;
     
+    // clean up loop
     IntegerNode currNode = result.head.nextPos;
     IntegerNode validNode = currNode;
+
     while(currNode != null){
       if (currNode.digits != 0) {
         validNode = currNode;
@@ -185,7 +184,7 @@ public class MyBigInteger {
    * @param  S1    the sign of B1
    * @param  S2    the sign of B2
    * @param  carry the carry value
-   * @return       the sign of the final result
+   * @param  tensComp tells the algorithm to use tens comp
    */
   public static void recursiveAdd(IntegerNode N1, IntegerNode N2, int S1, int S2, int carry, boolean tensComp) {
     int d1 = N1.digits;
@@ -220,11 +219,9 @@ public class MyBigInteger {
     // base case: both nodes are null
     if (N1.nextPos == null && N2.nextPos == null) {
       // add carry as a new node
-      if (sum > 9999) {
-        N1.digits = sum - 10_000;
+      if (carry == 1) {
         N1.addNextNode(1);
       }
-      else N1.digits = sum;
       // return final sign value
       return;
     }
@@ -286,8 +283,5 @@ class IntegerNode {
 
   public void addNextNode(int digits) {
     this.nextPos = new IntegerNode(digits);
-  }
-  public void setSign(int sign) {
-    this.digits = sign;
   }
 }
