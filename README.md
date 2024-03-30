@@ -7,4 +7,6 @@ Giving T(n) function or do we need to break down each line?
 
 What do you mean by the runtime analysis being expressed by the values of "myBigIntegers" ? are we doing it based on the nodes? How else can we do it? 
 
+Do we need to to psudeocode for equals and toString methods? 
+
 Run through and make sure we would get full credit
