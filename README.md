@@ -1,17 +1,11 @@
-# project1
-Questions to ask - 
+#361 Project 1
 
-- Do we need to do runtime analysis for anything other than our recursive add algorithm ?
-we need to do a runtime analysis for every method (toString and equals) and they need to be based on the size of the input.
+Ryan Scherbarth, Maisy Dunlavy, Xavier Barr, Sumaya Mohamed
 
-- Giving T(n) function or do we need to break down each line? 
-No, just give an intuitive explanation for what the runtime should be.
+Implementation for storing large integers using a singly linked list. 
 
-- What do you mean by the runtime analysis being expressed by the values of "myBigIntegers" ? are we doing it based on the nodes? How else can we do it? 
-Figure out the relation between the size (magnitude) of the number MyBigInteger represents and the number of nodes it takes to store that number. That is what the runtime analysis is supposed to be based on.
+The head node of our list will be the sign digit, either `0` or `-1`, to represent positivity. Each node in the list can contain at most 4 digits, and the final node will point to nil to show the end of the integer. 
 
-- Do we need to add psudeocode for equals and toString methods? 
-Yes, we need to add psudeocode for every method we use
+Large Integers can be created by passing the number in to the constructor as a string, which will then format it in this linked list accordingly. There is also the `add` function, capible of adding positive and negative Large Integers. 
 
-Run through and make sure we would get full credit
-Our code looks good and doesn't need to be modified.
+The overriden `equals` method is made such that it will properly verify if two big integers are equal, and `toString` is also overridden to format the output according to the requirements. 
